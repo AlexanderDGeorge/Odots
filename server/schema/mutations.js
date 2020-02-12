@@ -69,8 +69,18 @@ const mutation = new GraphQLObjectType({
       args: {
         title: { type: GraphQLString }
       },
-      resolve(_, { title }) {
-        return new Odot({ title }).save();
+      async resolve(_, { title }, ctx) {
+        const validUser = await AuthService.verifyUser({ token: ctx.token });
+        if (validUser.loggedIn) {
+          const userId = validUser.id;
+          return new Odot({ title }).save()
+            .then(odot => User.findById(userId)
+            .then(user => {
+              user.odots.push(odot);
+              user.save();
+              return user;
+            }))
+        }
       }
     },
     updateOdot: {
