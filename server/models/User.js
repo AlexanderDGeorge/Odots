@@ -20,6 +20,12 @@ const UserSchema = new Schema({
     min: 8,
     max: 16
   },
+  odots: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "odot"
+    }
+  ]
 });
 
 module.exports = mongoose.model("user", UserSchema);

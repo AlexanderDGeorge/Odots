@@ -12,21 +12,19 @@ const User = mongoose.model("user");
 const UserType = new GraphQLObjectType({
   name: "UserType",
   fields: () => ({
-    id: {
-      type: GraphQLID
-    },
-    name: {
-      type: GraphQLString
-    },
-    email: {
-      type: GraphQLString
-    },
-    loggedIn: {
-      type: GraphQLBoolean
-    },
-    token: {
-      type: GraphQLString
-    },
+    id: { type: GraphQLID },
+    name: { type: GraphQLString },
+    email: { type: GraphQLString },
+    loggedIn: { type: GraphQLBoolean },
+    token: { type: GraphQLString },
+    odots: {
+      type: new GraphQLList(require("./odot_type")),
+      resolve(parentValue) {
+        return User.findById(parentValue._id)
+          .populate("odots")
+          .then(user => user.odots)
+      }
+    }
   })
 });
 

@@ -10,9 +10,11 @@ const {
 const AuthService = require("../services/auth");
 
 const UserType = require("./types/user_type");
+const OdotType = require("./types/odot_type");
 
 const models = require("../models/model_index");
 const User = mongoose.model("user");
+const Odot = mongoose.model("odot");
 
 const mutation = new GraphQLObjectType({
   name: "Mutation",
@@ -62,6 +64,42 @@ const mutation = new GraphQLObjectType({
         return AuthService.verifyUser(args);
       }
     },
+    newOdot: {
+      type: OdotType,
+      args: {
+        title: { type: GraphQLString }
+      },
+      resolve(_, { title }) {
+        return new Odot({ title }).save();
+      }
+    },
+    updateOdot: {
+      type: OdotType,
+      args: {
+        id: { type: new GraphQLNonNull(GraphQLID) },
+        title: { type: GraphQLString }
+      },
+      resolve(_, { id, title }) {
+        const newOdot = {};
+        if (id) newOdot.id = id;
+        if (title) newOdot.title = title;
+        return Odot.findByIdAndUpdate(
+          { _id: id },
+          { $set: newOdot },
+          { new: true },
+          (err, odot) => {
+            return odot;
+          }
+        )
+      }
+    },
+    deleteOdot: {
+      type: OdotType,
+      args: { id: { type: new GraphQLNonNull(GraphQLID) } },
+      resolve(_, { id }) {
+        return Odot.findOneAndDelete({ _id: id })
+      }
+    }
   }
 });
 
