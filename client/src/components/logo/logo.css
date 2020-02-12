@@ -1,0 +1,113 @@
+.logo {
+  width: 150px;
+  height: 150px;
+  left: 20px;
+  top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.outer {
+  height: 100px;
+  width: 100px;
+  background-color: transparent;
+  border-radius: 50%;
+  border: 2px solid black;
+  position: absolute;
+  transition: 1s;
+  cursor: pointer;
+}
+
+.outer-open {
+  height: 0px;
+  width: 0px;
+  background-color: transparent;
+  border-radius: 50%;
+  border: 2px solid black;
+  position: absolute;
+  transition: 1s;
+  cursor: pointer;
+}
+
+.inner {
+  height: 20px;
+  width: 20px;
+  background-color: black;
+  border-radius: 50%;
+  position: absolute;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.lines {
+  position: absolute;
+  top: 10px;
+  height: 0px;
+  border: 1px solid black;
+  transition: ease-out .5s;
+}
+
+.lines-open {
+  position: absolute;
+  top: 10px;
+  height: 300%;
+  border: 1px solid black;
+  transition: ease-in .7s;
+}
+
+#line1 {  
+  transform-origin: top;
+  transform: rotate(0deg);
+  width: 0;
+  display: flex;
+  justify-content: center;
+}
+
+#line2 {  
+  transform-origin: top;
+  transform: rotate(-45deg);
+  width: 0;
+  display: flex;
+  justify-content: center;
+}
+
+#line3 {  
+  transform-origin: top;
+  transform: rotate(-90deg);
+  width: 0;
+  display: flex;
+  justify-content: center;
+}
+
+#icon {
+  height: 0;
+}
+
+#icon1 {
+  position: absolute;
+  top: 110%;
+  height: 40px;
+  width: 40px;
+  transition: ease-in 1s;
+}
+
+#icon2 {
+  position: absolute;
+  top: 110%;
+  height: 40px;
+  width: 40px;
+  transition: ease-in 1s;
+}
+
+#icon3 {
+  position: absolute;
+  top: 110%;
+  height: 40px;
+  width: 40px;
+  transition: ease-in 1s;
+}
+
