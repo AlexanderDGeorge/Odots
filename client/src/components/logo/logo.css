@@ -59,6 +59,11 @@
   transition: ease-in .7s;
 }
 
+.logo-links {
+  text-decoration: none;
+  color: black;
+}
+
 #line1 {  
   transform-origin: top;
   transform: rotate(0deg);
@@ -85,6 +90,18 @@
 
 #icon {
   height: 0;
+}
+
+.icon {
+  height: inherit;
+  width: inherit;
+}
+
+.combo-icon {
+  height: inherit;
+  width: inherit;
+  position: absolute;
+  left: 0%;
 }
 
 #icon1 {

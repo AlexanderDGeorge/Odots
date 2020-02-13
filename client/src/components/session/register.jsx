@@ -14,7 +14,12 @@ function Register() {
   function handleSubmit() {
     registerUser({
       variables: { name, email, password }
-    }).then(data => console.log(data));
+    }).then(data => {
+      const { token, loggedIn } = data.data.login;
+      localStorage.setItem("auth-token", token);
+      client.writeData({ data: { isLoggedIn: loggedIn } })
+    });
+    history.push("/");
   }
 
   return (

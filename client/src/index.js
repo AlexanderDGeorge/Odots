@@ -34,19 +34,19 @@ const token = localStorage.getItem("auth-token");
 
 cache.writeData({
   data: {
-    isLoggedIn: Boolean(token)
+    isLoggedIn: Boolean(token),
+    curUserId: ""
   }
 });
 
 if (token) {
   client
-    // use the VERIFY_USER mutation directly use the returned data to know if the returned
-    // user is loggedIn
     .mutate({ mutation: VERIFY_USER, variables: { token } })
     .then(({ data }) => {
       cache.writeData({
         data: {
-          isLoggedIn: data.verifyUser.loggedIn
+          isLoggedIn: data.verifyUser.loggedIn,
+          curUserId: data.verifyUser.id
         }
       });
     });
@@ -62,9 +62,10 @@ const Root = () => {
   );
 };
 
+
+ReactDOM.render(<Root />, document.getElementById("root"));
+
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: https://bit.ly/CRA-PWA
 serviceWorker.unregister();
-
-ReactDOM.render(<Root />, document.getElementById("root"));
