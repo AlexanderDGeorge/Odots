@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Odot() {
+function Odot(odot) {
   return (
     <div className="odot">
       

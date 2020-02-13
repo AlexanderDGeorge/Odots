@@ -15,8 +15,9 @@ function Register() {
     registerUser({
       variables: { name, email, password }
     }).then(data => {
-      const { token, loggedIn } = data.data.login;
+      const { token, loggedIn, id } = data.data.login;
       localStorage.setItem("auth-token", token);
+      localStorage.setItem("user-id", id);
       client.writeData({ data: { isLoggedIn: loggedIn } })
     });
     history.push("/");

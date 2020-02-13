@@ -46,6 +46,7 @@ const register = async data => {
 
     return {
       token,
+      id: user._id,
       loggedIn: true,
       ...user._doc,
       password: null
@@ -92,6 +93,7 @@ const login = async data => {
         );
         return {
           token,
+          id: user._id,
           loggedIn: true,
           ...user,
           password: ""
@@ -115,7 +117,8 @@ const verifyUser = async data => {
     });
 
     return {
-      loggedIn
+      loggedIn,
+      id
     };
   } catch (err) {
     return {

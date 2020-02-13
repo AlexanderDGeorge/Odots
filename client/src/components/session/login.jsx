@@ -14,9 +14,10 @@ function Login() {
     loginUser({
       variables: { email, password }
     }).then(data => {
-      const { token, loggedIn } = data.data.login;
+      const { token, loggedIn, id } = data.data.login;
       localStorage.setItem("auth-token", token);
-      client.writeData({ data: { isLoggedIn: loggedIn } })
+      localStorage.setItem("user-id", id);
+      client.writeData({ data: { isLoggedIn: loggedIn } });
     });
     history.push("/");
   }

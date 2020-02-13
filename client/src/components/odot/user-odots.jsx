@@ -1,20 +1,24 @@
 import React from 'react';
 import { useQuery } from 'react-apollo';
-import { CUR_USER, FETCH_USER, IS_LOGGED_IN } from '../../graphql/queries';
+import { FETCH_USER } from '../../graphql/queries';
+import Odot from './odot';
 
 function UserOdots() {
-  const { loading, data } = useQuery(IS_LOGGED_IN);
-  // const { loading, data } = useQuery(CUR_USER);
 
-  if (loading){
+  const id = localStorage.getItem("user-id");
+  const { loading, data } = useQuery(FETCH_USER, { variables: { id }})
+
+  if (loading) {
     return null;
   } else {
-    console.log(data);
+    console.log(data.user.odots)
     return (
-      <div>
-        
+      <div className="user-odots">
+        {data.user.odots.forEach(odot => (
+          <Odot odot={odot} />
+        ))}
       </div>
-    );
+    )
   }
 }
 

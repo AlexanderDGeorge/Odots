@@ -6,7 +6,7 @@ import Settings from "./settings/settings";
 
 export default () => (
   <div>
-    <Route path="/" component={() => <Main />} />
+    <Route path="/" component={Main} />
     <Switch>
       <Route path="/settings" component={Settings} />
       <Route path="/session" component={Session} />

@@ -24,6 +24,7 @@ const httpLink = createHttpLink({
 const client = new ApolloClient({
   link: httpLink,
   cache,
+  resolvers: {},
   onError: ({ networkError, graphQLErrors }) => {
     console.log("graphQLErrors", graphQLErrors);
     console.log("networkError", networkError);
@@ -34,8 +35,7 @@ const token = localStorage.getItem("auth-token");
 
 cache.writeData({
   data: {
-    isLoggedIn: Boolean(token),
-    curUserId: ""
+    isLoggedIn: Boolean(token)
   }
 });
 
@@ -46,7 +46,6 @@ if (token) {
       cache.writeData({
         data: {
           isLoggedIn: data.verifyUser.loggedIn,
-          curUserId: data.verifyUser.id
         }
       });
     });
