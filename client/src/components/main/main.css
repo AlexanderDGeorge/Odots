@@ -2,12 +2,29 @@
   margin: 0;
   border: 0;
   padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
 .main {
   width: 100vw;
   height: 100vh;
-  padding: 5%;
-  background: linear-gradient(160deg,#BAC7A7, #889E81);
+  padding: 2%;
+  /* background: linear-gradient(160deg,#BAC7A7, #889E81); */
   box-sizing: border-box;
+  display: grid;
+  grid-template-columns: 15vh auto 10vh;
+  grid-template-rows: 15vh 10vw auto 10vw;
+  grid-template-areas: 
+    "logo . greet quote"
+    ". . . . "
+    "odot odot odot odot"
+    ". . . . ";
+}
+
+.logo {
+  grid-area: logo;
+}
+
+.user-odots {
+  grid-area: odot;
 }

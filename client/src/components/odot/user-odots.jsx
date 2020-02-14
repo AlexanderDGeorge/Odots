@@ -3,6 +3,7 @@ import { useQuery } from 'react-apollo';
 import { FETCH_USER } from '../../graphql/queries';
 import Odot from './odot';
 import NewOdot from './new-odot';
+import './odot.css';
 
 function UserOdots() {
 
@@ -17,7 +18,6 @@ function UserOdots() {
         {data.user.odots.map(odot => (
           <Odot odot={odot} key={odot.id}/>
         ))}
-        {/* <Odot odot={data.user.odots[0]}/> */}
         <NewOdot />
       </div>
     )

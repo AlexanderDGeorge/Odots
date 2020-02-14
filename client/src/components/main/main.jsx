@@ -7,8 +7,8 @@ import UserOdots from '../odot/user-odots';
 function Main() {
   return (
     <div className="main">
-      <Logo />
-      <UserOdots />
+      <Logo className="logo"/>
+      <UserOdots className="user-odots"/>
     </div>
   )
 }
