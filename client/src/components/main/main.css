@@ -7,5 +7,7 @@
 .main {
   width: 100vw;
   height: 100vh;
+  padding: 5%;
   background: linear-gradient(160deg,#BAC7A7, #889E81);
+  box-sizing: border-box;
 }

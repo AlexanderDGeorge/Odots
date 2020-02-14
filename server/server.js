@@ -23,7 +23,7 @@ app.use(cors());
 app.use("/graphql", expressGQL(req => {
   return {
     schema,
-    context: {},
+    context: {token: req.headers.authorization},
     graphiql: true,
   }
 }));

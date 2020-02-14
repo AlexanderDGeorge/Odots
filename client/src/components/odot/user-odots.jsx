@@ -2,6 +2,7 @@ import React from 'react';
 import { useQuery } from 'react-apollo';
 import { FETCH_USER } from '../../graphql/queries';
 import Odot from './odot';
+import NewOdot from './new-odot';
 
 function UserOdots() {
 
@@ -11,12 +12,13 @@ function UserOdots() {
   if (loading) {
     return null;
   } else {
-    console.log(data.user.odots)
     return (
       <div className="user-odots">
-        {data.user.odots.forEach(odot => (
-          <Odot odot={odot} />
+        {data.user.odots.map(odot => (
+          <Odot odot={odot} key={odot.id}/>
         ))}
+        {/* <Odot odot={data.user.odots[0]}/> */}
+        <NewOdot />
       </div>
     )
   }

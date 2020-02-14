@@ -3,7 +3,9 @@ import { useMutation } from 'react-apollo';
 import { NEW_ODOT } from '../../graphql/mutations';
 
 function NewOdot() {
-  const [newOdot] = useMutation(NEW_ODOT);
+  const [newOdot] = useMutation(NEW_ODOT, {
+    
+  });
   const [title, setTitle] = useState("");
 
   function handleSubmit() {
