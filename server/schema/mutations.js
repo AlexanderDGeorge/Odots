@@ -78,7 +78,7 @@ const mutation = new GraphQLObjectType({
             .then(user => {
               user.odots.push(odot);
               user.save();
-              return user;
+              return odot;
             }))
         }
       }

@@ -18,7 +18,7 @@ function UserOdots() {
         {data.user.odots.map(odot => (
           <Odot odot={odot} key={odot.id}/>
         ))}
-        <NewOdot />
+        <NewOdot user={data.user}/>
       </div>
     )
   }

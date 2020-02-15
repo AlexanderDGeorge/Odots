@@ -3,7 +3,7 @@ import {BsGear, BsPerson, BsCircle, BsDot} from 'react-icons/bs'
 import { Link } from 'react-router-dom';
 import './logo.css';
 
-function Logo() {
+function LinkLogo() {
 
   const [open, setOpen] = useState(false);
 
@@ -35,4 +35,4 @@ function Logo() {
   );
 }
 
-export default Logo;
+export default LinkLogo;

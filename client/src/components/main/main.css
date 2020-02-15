@@ -13,7 +13,7 @@
   box-sizing: border-box;
   display: grid;
   grid-template-columns: 15vh auto 10vh;
-  grid-template-rows: 15vh 10vw auto 10vw;
+  grid-template-rows: 15vh 10vw auto 20vw;
   grid-template-areas: 
     "logo . greet quote"
     ". . . . "

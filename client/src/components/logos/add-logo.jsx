@@ -1,15 +1,15 @@
 import React from 'react';
+import { BsPlus } from 'react-icons/bs';
 import './logo.css';
 
-function OdotLogo() {
+function AddLogo() {
   return (
     <div className="logo">
       <div className="outer">
       </div>
-      <div className="inner" >
-      </div>
+      <BsPlus/>
     </div>
   );
 }
 
-export default OdotLogo;
+export default AddLogo;
