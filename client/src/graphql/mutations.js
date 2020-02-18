@@ -29,32 +29,6 @@ export const REGISTER_USER = gql`
   }
 `;
 
-// export const NEW_ODOT = gql`
-//   mutation NewOdot($title: String!) {
-//     newOdot(title: $title) {
-//       id
-//       title
-//     }
-//   }
-// `;
-
-export const UPDATE_ODOT = gql`
-  mutation UpdateOdot($id: ID!, $title: String!) {
-    updateOdot(id: $id, title: $title) {
-      id
-      title
-    }
-  }
-`;
-
-export const DELETE_ODOT = gql`
-  mutation DeleteOdot($id: ID!) {
-    deleteOdot(id: $id) {
-      id
-    }
-  }
-`;
-
 export const NEW_ODOT = gql`
   mutation NewOdot($title: String!) {
     newUserOdot(title: $title) {
@@ -66,4 +40,26 @@ export const NEW_ODOT = gql`
       }
     }
   }
-`
+`;
+
+export const UPDATE_ODOT = gql`
+  mutation UpdateOdot($id: ID!, $title: String!) {
+    updateOdot(id: $id, title: $title) {
+      id
+      title
+    }
+  }
+`;
+
+export const NEW_DOT = gql`
+  mutation NewDot($title: String!, $odotId: ID!) {
+    newOdotDot(title: $title, odotId: $odotId) {
+      id
+      title
+      dots {
+        id
+        title
+      }
+    }
+  }
+`;

@@ -24,6 +24,10 @@ export const FETCH_ODOT = gql`
     odot(id: $id) {
       id
       title
+      dots {
+        id
+        title
+      }
     }
   }
 `;

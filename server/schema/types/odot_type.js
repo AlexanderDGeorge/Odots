@@ -4,10 +4,11 @@ const {
   GraphQLObjectType,
   GraphQLString,
   GraphQLID,
+  GraphQLList
 } = graphql;
-
-const models = require('../../models/model_index');
+const models = require("../../models/model_index");
 const User = mongoose.model("user");
+const Odot = mongoose.model("odot");
 
 const OdotType = new GraphQLObjectType({
   name: "OdotType",
@@ -21,6 +22,14 @@ const OdotType = new GraphQLObjectType({
           .then(user => user)
       }
     },
+    dots: {
+      type: new GraphQLList(require("./dot_type")),
+      resolve(parentValue) {
+        return Odot.findById(parentValue._id)
+          .populate("dots")
+          .then(odot => odot.dots)
+      }
+    }
   })
 })
 

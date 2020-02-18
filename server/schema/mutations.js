@@ -11,10 +11,12 @@ const AuthService = require("../services/auth");
 
 const UserType = require("./types/user_type");
 const OdotType = require("./types/odot_type");
+const DotType = require("./types/dot_type");
 
 const models = require("../models/model_index");
 const User = mongoose.model("user");
 const Odot = mongoose.model("odot");
+const Dot = mongoose.model("dot");
 
 const mutation = new GraphQLObjectType({
   name: "Mutation",
@@ -98,6 +100,41 @@ const mutation = new GraphQLObjectType({
         return Odot.findOneAndDelete({ _id: id })
       }
     },
+    newDot: {
+      type: DotType,
+      args: { title: { type: GraphQLString } },
+      resolve(_, { title }) {
+        return new Dot({ title }).save();
+      }
+    },
+    updateDot: {
+      type: DotType,
+      args: {
+        id: { type: new GraphQLNonNull(GraphQLID) },
+        title: { type: GraphQLString }
+      },
+      resolve(_, { id, title }) {
+        const newDot = {};
+        if (id) newDot.id = id;
+        if (title) newDot.title = title;
+        return Dot.findByIdAndUpdate(
+          { _id: id },
+          { $set: newDot },
+          { new: true },
+          (err, Dot) => {
+            return Dot;
+          }
+        )
+      }
+    },
+    deleteDot: {
+      type: DotType,
+      args: { id: { type: new GraphQLNonNull(GraphQLID) } },
+      resolve(_, { id }) {
+        return Dot.findOneAndDelete({ _id: id })
+      }
+    },
+
     newUserOdot: {
       type: UserType,
       args: { title: { type: new GraphQLNonNull(GraphQLString) } },
@@ -118,6 +155,28 @@ const mutation = new GraphQLObjectType({
         if (validUser.loggedIn) {
           return User.removeOdot(validUser.id, id)
         }
+      }
+    },
+    newOdotDot: {
+      type: OdotType,
+      args: { 
+        title: { type: new GraphQLNonNull(GraphQLString) },
+        odotId: { type: new GraphQLNonNull(GraphQLID) }
+      },
+      resolve(_, { title, odotId }) {
+        return new Dot({ title }).save().then(dot => {
+          return Odot.addDot(odotId, dot._id)
+        })
+      }
+    },
+    removeOdotDot: {
+      type: OdotType,
+      args: { 
+        odotId: { type: new GraphQLNonNull(GraphQLID) },
+        dotId: { type: new GraphQLNonNull(GraphQLID) },
+      },
+      resolve(_, { odotId, dotId } ) {
+        return Odot.removeDot(odotId, dotId);
       }
     }
   }
