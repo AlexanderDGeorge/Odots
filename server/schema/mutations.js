@@ -66,21 +66,9 @@ const mutation = new GraphQLObjectType({
     },
     newOdot: {
       type: OdotType,
-      args: {
-        title: { type: GraphQLString }
-      },
-      async resolve(_, { title }, ctx) {
-        const validUser = await AuthService.verifyUser({ token: ctx.token });
-        if (validUser.loggedIn) {
-          const userId = validUser.id;
-          return new Odot({ title }).save()
-            .then(odot => User.findById(userId)
-            .then(user => {
-              user.odots.push(odot);
-              user.save();
-              return odot;
-            }))
-        }
+      args: { title: { type: GraphQLString } },
+      resolve(_, { title }) {
+        return new Odot({ title }).save();
       }
     },
     updateOdot: {
@@ -108,6 +96,28 @@ const mutation = new GraphQLObjectType({
       args: { id: { type: new GraphQLNonNull(GraphQLID) } },
       resolve(_, { id }) {
         return Odot.findOneAndDelete({ _id: id })
+      }
+    },
+    newUserOdot: {
+      type: UserType,
+      args: { title: { type: new GraphQLNonNull(GraphQLString) } },
+      async resolve(_, { title }, ctx) {
+        const validUser = await AuthService.verifyUser({ token: ctx.token });
+        return new Odot({ title }).save().then(odot => {
+          if (validUser.loggedIn) {
+            return User.addOdot(validUser.id, odot._id)
+          }
+        })
+      }
+    },
+    removeUserOdot: {
+      type: UserType,
+      args: { id: { type: new GraphQLNonNull(GraphQLID) } },
+      async resolve(_, { id }, ctx) {
+        const validUser = await AuthService.verifyUser({ token: ctx.token });
+        if (validUser.loggedIn) {
+          return User.removeOdot(validUser.id, id)
+        }
       }
     }
   }

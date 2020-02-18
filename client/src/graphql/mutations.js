@@ -29,14 +29,14 @@ export const REGISTER_USER = gql`
   }
 `;
 
-export const NEW_ODOT = gql`
-  mutation NewOdot($title: String!) {
-    newOdot(title: $title) {
-      id
-      title
-    }
-  }
-`;
+// export const NEW_ODOT = gql`
+//   mutation NewOdot($title: String!) {
+//     newOdot(title: $title) {
+//       id
+//       title
+//     }
+//   }
+// `;
 
 export const UPDATE_ODOT = gql`
   mutation UpdateOdot($id: ID!, $title: String!) {
@@ -54,3 +54,16 @@ export const DELETE_ODOT = gql`
     }
   }
 `;
+
+export const NEW_ODOT = gql`
+  mutation NewOdot($title: String!) {
+    newUserOdot(title: $title) {
+      id
+      name
+      odots {
+        id
+        title
+      }
+    }
+  }
+`

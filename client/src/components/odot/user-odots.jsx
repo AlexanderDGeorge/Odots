@@ -13,12 +13,13 @@ function UserOdots() {
   if (loading) {
     return null;
   } else {
+    console.log(data);
     return (
       <div className="user-odots">
         {data.user.odots.map(odot => (
           <Odot odot={odot} key={odot.id}/>
         ))}
-        <NewOdot user={data.user}/>
+        <NewOdot />
       </div>
     )
   }

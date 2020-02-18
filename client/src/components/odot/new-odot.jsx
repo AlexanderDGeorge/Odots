@@ -1,29 +1,22 @@
 import React, { useState } from 'react';
 import { useMutation } from 'react-apollo';
 import { NEW_ODOT } from '../../graphql/mutations';
-import { FETCH_USER } from '../../graphql/queries';
 import AddLogo from '../logos/add-logo';
 import './odot.css';
+import { FETCH_USER } from '../../graphql/queries';
 
-function NewOdot(props) {
-
-  const id = localStorage.getItem("user-id");
+function NewOdot() {
+  const id = localStorage.getItem("user-id")
   const [newOdot] = useMutation(NEW_ODOT, {
-    update(cache, { data: { newOdot }}) {
-      props.user.odots.concat(newOdot);
-      console.log(props.user.odots);
+    update(cache, { data }) {
       cache.writeQuery({
         query: FETCH_USER,
         variables: { id },
-        data: { user: props.user }
+        data: { user: data.newUserOdot }
       })
     }
   });
   const [title, setTitle] = useState("");
-
-  // function updateCache(data) {
-  //   console.log(data);
-  // }
 
   function handleSubmit() {
     newOdot({

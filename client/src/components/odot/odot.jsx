@@ -8,7 +8,7 @@ import { UPDATE_ODOT } from '../../graphql/mutations';
 
 function Odot(props) {
 
-  const { loading, data } = useQuery(FETCH_ODOT, { variables: { id: props.odot.id }})
+  const { loading } = useQuery(FETCH_ODOT, { variables: { id: props.odot.id }})
   const [updateOdot] = useMutation(UPDATE_ODOT);
   const [title, setTitle] = useState("");
   const odot = props.odot;
@@ -22,7 +22,6 @@ function Odot(props) {
   if (loading) {
     return null;
   } else {
-    console.log(data)
     return (
       <div className="odot">
         <div className="odot-side">

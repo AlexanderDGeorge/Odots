@@ -28,4 +28,32 @@ const UserSchema = new Schema({
   ]
 });
 
+UserSchema.statics.addOdot = (userId, odotId) => {
+  const User = mongoose.model("user");
+  const Odot = mongoose.model("odot");
+
+  return User.findById(userId).then(user => {
+    return Odot.findById(odotId).then(odot => {
+      user.odots.push(odot);
+      return Promise.all([user.save(), odot.save()]).then(
+        ([user, odot]) => user
+      )
+    })
+  })
+}
+
+UserSchema.statics.removeOdot = (userId, odotId) => {
+  const User = mongoose.model("user");
+  const Odot = mongoose.model("odot");
+
+  return User.findById(userId).then(user => {
+    return Odot.findById(odotId).then(odot => {
+      user.odots.pull(odot);
+      return Promise.all([user.save(), odot.save()]).then(
+        ([user, odot]) => user
+      )
+    })
+  })
+}
+
 module.exports = mongoose.model("user", UserSchema);
