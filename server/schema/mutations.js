@@ -134,7 +134,6 @@ const mutation = new GraphQLObjectType({
         return Dot.findOneAndDelete({ _id: id })
       }
     },
-
     newUserOdot: {
       type: UserType,
       args: { title: { type: new GraphQLNonNull(GraphQLString) } },

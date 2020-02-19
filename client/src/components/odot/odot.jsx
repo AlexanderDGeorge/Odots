@@ -5,23 +5,25 @@ import { FETCH_ODOT } from '../../graphql/queries';
 import './odot.css';
 import OdotLogo from '../logos/odot-logo';
 import { UPDATE_ODOT } from '../../graphql/mutations';
+import NewDot from '../dot/new-dot';
+import Dot from '../dot/dot';
 
 function Odot(props) {
 
-  const { loading } = useQuery(FETCH_ODOT, { variables: { id: props.odot.id }})
+  const { loading, data } = useQuery(FETCH_ODOT, { variables: { id: props.odot.id }})
   const [updateOdot] = useMutation(UPDATE_ODOT);
   const [title, setTitle] = useState("");
-  const odot = props.odot;
 
   function handleSubmit() {
     updateOdot({
-      variables: { id: odot.id, title }
+      variables: { id: props.odot.id, title }
     });
   }
 
   if (loading) {
     return null;
   } else {
+    const odot = data.odot;
     return (
       <div className="odot">
         <div className="odot-side">
@@ -40,6 +42,12 @@ function Odot(props) {
             placeholder={odot.title}
             required
           />
+        </div>
+        <div className="odot-content"> 
+          {odot.dots.map(dot => (
+            <Dot dot={dot} key={dot.id} />
+          ))}
+          <NewDot />
         </div>
       </div>
     )

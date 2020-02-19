@@ -17,7 +17,7 @@ function NewDot(props) {
 
   function handleSubmit() {
     newDot({
-      variables: { title }
+      variables: { title, odotId: props.odotId }
     })
   }
 

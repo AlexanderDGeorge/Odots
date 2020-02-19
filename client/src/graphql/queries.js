@@ -31,3 +31,12 @@ export const FETCH_ODOT = gql`
     }
   }
 `;
+
+export const FETCH_DOT = gql`
+  query fetchDot($id: ID!) {
+    dot(id: $id) {
+      id
+      title
+    }
+  }
+`

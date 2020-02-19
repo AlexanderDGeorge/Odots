@@ -13,7 +13,6 @@ function UserOdots() {
   if (loading) {
     return null;
   } else {
-    console.log(data);
     return (
       <div className="user-odots">
         {data.user.odots.map(odot => (

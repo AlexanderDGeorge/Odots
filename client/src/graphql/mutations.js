@@ -63,3 +63,12 @@ export const NEW_DOT = gql`
     }
   }
 `;
+
+export const UPDATE_DOT = gql`
+  mutation UpdateDot($id: ID!, $title: String!) {
+    updateDot(id: $id, title: $title) {
+      id
+      title
+    }
+  }
+`
