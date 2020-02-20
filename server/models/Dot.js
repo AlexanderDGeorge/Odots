@@ -6,6 +6,10 @@ const DotSchema = new Schema({
     type: String,
     required: true
   },
+  complete: {
+    type: Boolean,
+    default: false
+  }
 })
 
 module.exports = mongoose.model("dot", DotSchema);

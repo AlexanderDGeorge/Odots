@@ -7,8 +7,7 @@ import './odot.css';
 
 function UserOdots() {
 
-  const id = localStorage.getItem("user-id");
-  const { loading, data } = useQuery(FETCH_USER, { variables: { id }})
+  const { loading, data } = useQuery(FETCH_USER)
 
   if (loading) {
     return null;

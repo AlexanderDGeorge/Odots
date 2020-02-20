@@ -2,13 +2,14 @@ import React, { useState } from 'react';
 import { useMutation } from 'react-apollo';
 import { NEW_DOT } from '../../graphql/mutations';
 import { FETCH_ODOT } from '../../graphql/queries';
+import { BsPlus } from 'react-icons/bs';
 
 function NewDot(props) {
   const [newDot] = useMutation(NEW_DOT, {
     update(cache, { data }) {
       cache.writeQuery({
         query: FETCH_ODOT,
-        variables: { id: props.odotId },
+        variables: { id: props.odot.id },
         data: { odot: data.newOdotDot }
       })
     }
@@ -17,13 +18,14 @@ function NewDot(props) {
 
   function handleSubmit() {
     newDot({
-      variables: { title, odotId: props.odotId }
+      variables: { title, odotId: props.odot.id, complete: false }
     })
+    setTitle("");
   }
 
   return (
     <div className="dot">
-      <div className="dot-logo"></div>
+      <BsPlus className="dot-add"/>
       <div className="dot-title">
         <input 
           type="text"

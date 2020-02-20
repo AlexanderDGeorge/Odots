@@ -4,6 +4,7 @@ const {
   GraphQLObjectType,
   GraphQLString,
   GraphQLID,
+  GraphQLBoolean,
 } = graphql;
 const models = require("../../models/model_index");
 const Odot = mongoose.model("odot");
@@ -13,6 +14,7 @@ const DotType = new GraphQLObjectType({
   fields: () => ({
     id: { type: GraphQLID },
     title: { type: GraphQLString },
+    complete: { type: GraphQLBoolean },
     odot: {
       type: require("./odot_type"),
       resolve(parentValue) {
