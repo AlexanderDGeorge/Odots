@@ -1,17 +1,15 @@
 import React, { useState } from 'react';
 import { useMutation } from 'react-apollo';
 import { NEW_ODOT } from '../../graphql/mutations';
-import AddLogo from '../logos/add-logo';
 import './odot.css';
 import { FETCH_USER } from '../../graphql/queries';
+import { BsPlus } from 'react-icons/bs';
 
 function NewOdot() {
-  const id = localStorage.getItem("user-id")
   const [newOdot] = useMutation(NEW_ODOT, {
     update(cache, { data }) {
       cache.writeQuery({
         query: FETCH_USER,
-        variables: { id },
         data: { user: data.newUserOdot }
       })
     }
@@ -22,19 +20,15 @@ function NewOdot() {
     newOdot({
       variables: { title }
     })
+    setTitle("");
   }
 
   return (
     <div className="odot">
-      <div className="odot-side">
-        <div className="odot-logo">
-          <AddLogo />
-        </div>
-        <div className="odot-border">
-        </div>
-      </div>
-      <div className="odot-title">
-        <input 
+      <div className="odot-header">
+        <BsPlus className="odot-logo"/>
+        <input
+          className="odot-title" 
           type="text"
           value={title}
           onChange={e => setTitle(e.target.value)}
@@ -42,6 +36,9 @@ function NewOdot() {
           placeholder="Create an ODOT"
           required
         />
+      </div>
+      <div className="odot-content">
+
       </div>
     </div>
   )

@@ -6,6 +6,7 @@ const {
   GraphQLID,
   GraphQLNonNull,
 } = graphql;
+const AuthService = require("../../services/auth");
 
 const modelIndex = require('../../models/model_index');
 
@@ -22,9 +23,11 @@ const RootQuery = new GraphQLObjectType({
   fields: {
     user: {
       type: UserType,
-      args: { id: { type: new GraphQLNonNull(GraphQLID) } },
-      resolve(_, args) {
-        return User.findById(args.id);
+      async resolve(_, {}, ctx) {
+        const validUser = await AuthService.verifyUser({ token: ctx.token });
+        if (validUser) {
+          return User.findById(validUser.id);
+        }
       }
     },
     users: {

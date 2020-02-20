@@ -7,8 +7,8 @@ export const IS_LOGGED_IN = gql`
 `;
 
 export const FETCH_USER = gql`
-  query fetchUser($id: ID!) {
-    user(id: $id) {
+  query fetchUser {
+    user {
       id
       name
       odots {
@@ -27,6 +27,7 @@ export const FETCH_ODOT = gql`
       dots {
         id
         title
+        complete
       }
     }
   }
@@ -37,6 +38,7 @@ export const FETCH_DOT = gql`
     dot(id: $id) {
       id
       title
+      complete
     }
   }
 `

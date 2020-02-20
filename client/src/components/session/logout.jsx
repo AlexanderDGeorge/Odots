@@ -16,7 +16,6 @@ function Logout() {
             onClick={ e => {
               e.preventDefault();
               localStorage.removeItem("auth-token");
-              localStorage.removeItem("user-id")
               client.writeData({ data: { isLoggedIn: false } });
             }}>
               Logout

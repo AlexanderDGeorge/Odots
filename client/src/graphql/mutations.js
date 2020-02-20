@@ -51,6 +51,19 @@ export const UPDATE_ODOT = gql`
   }
 `;
 
+export const DELETE_ODOT = gql`
+  mutation DeleteOdot($id: ID!) {
+    removeUserOdot(id: $id) {
+      id
+      name
+      odots {
+        id
+        title
+      }
+    }
+  }
+`
+
 export const NEW_DOT = gql`
   mutation NewDot($title: String!, $odotId: ID!) {
     newOdotDot(title: $title, odotId: $odotId) {
@@ -59,16 +72,18 @@ export const NEW_DOT = gql`
       dots {
         id
         title
+        complete
       }
     }
   }
 `;
 
 export const UPDATE_DOT = gql`
-  mutation UpdateDot($id: ID!, $title: String!) {
-    updateDot(id: $id, title: $title) {
+  mutation UpdateDot($id: ID!, $title: String, $complete: Boolean) {
+    updateDot(id: $id, title: $title, complete: $complete) {
       id
       title
+      complete
     }
   }
 `

@@ -5,7 +5,8 @@ const {
   GraphQLString,
   GraphQLInt,
   GraphQLID,
-  GraphQLNonNull
+  GraphQLNonNull,
+  GraphQLBoolean,
 } = graphql;
 const AuthService = require("../services/auth");
 
@@ -111,12 +112,14 @@ const mutation = new GraphQLObjectType({
       type: DotType,
       args: {
         id: { type: new GraphQLNonNull(GraphQLID) },
-        title: { type: GraphQLString }
+        title: { type: GraphQLString },
+        complete: { type: GraphQLBoolean },
       },
-      resolve(_, { id, title }) {
+      resolve(_, { id, title, complete }) {
         const newDot = {};
         if (id) newDot.id = id;
         if (title) newDot.title = title;
+        if (complete) newDot.complete = complete;
         return Dot.findByIdAndUpdate(
           { _id: id },
           { $set: newDot },
