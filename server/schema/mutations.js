@@ -119,7 +119,7 @@ const mutation = new GraphQLObjectType({
         const newDot = {};
         if (id) newDot.id = id;
         if (title) newDot.title = title;
-        if (complete) newDot.complete = complete;
+        newDot.complete = complete;
         return Dot.findByIdAndUpdate(
           { _id: id },
           { $set: newDot },
@@ -169,6 +169,16 @@ const mutation = new GraphQLObjectType({
         return new Dot({ title }).save().then(dot => {
           return Odot.addDot(odotId, dot._id)
         })
+      }
+    },
+    updateOdotDot: {
+      type: OdotType,
+      args: {
+        odotId: { type: new GraphQLNonNull(GraphQLID) },
+        dotId: { type: new GraphQLNonNull(GraphQLID) },
+      },
+      resolve(_, { odotId, dotId } ) {
+        return Odot.updateDot(odotId, dotId);
       }
     },
     removeOdotDot: {

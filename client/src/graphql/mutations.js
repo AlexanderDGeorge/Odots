@@ -87,3 +87,17 @@ export const UPDATE_DOT = gql`
     }
   }
 `
+
+export const DELETE_DOT = gql`
+  mutation DeleteDot($odotId: ID!, $dotId: ID!) {
+    removeOdotDot(odotId: $odotId, dotId: $dotId) {
+      id
+      title
+      dots {
+        id
+        title
+        complete
+      }
+    }
+  }
+`

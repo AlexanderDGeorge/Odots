@@ -54,7 +54,7 @@ function Odot(props) {
         </div>
         <div className="odot-content">
           {odot.dots.map(dot => (
-            <Dot dot={dot} key={dot.id}/>
+            <Dot dot={dot} odot={odot} key={dot.id}/>
           ))}
           <NewDot odot={odot}/>
         </div>

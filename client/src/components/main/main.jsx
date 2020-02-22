@@ -1,14 +1,15 @@
 import React from 'react';
-import LinkLogo from '../logos/link-logo';
-
+import Header from '../header/header';
+import UserOdots from '../odot/odots';
+import Focus from '../focus/focus';
 import './main.css'
-import UserOdots from '../odot/user-odots';
 
 function Main() {
   return (
-    <div className="main">
-      <LinkLogo className="logo"/>
-      <UserOdots className="user-odots"/>
+    <div className="main orange">
+      <Header className="header"/>
+      <UserOdots className="odots"/>
+      <Focus className="focus"/>
     </div>
   )
 }

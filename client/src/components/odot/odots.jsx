@@ -5,7 +5,7 @@ import Odot from './odot';
 import NewOdot from './new-odot';
 import './odot.css';
 
-function UserOdots() {
+function Odots() {
 
   const { loading, data } = useQuery(FETCH_USER)
 
@@ -13,7 +13,7 @@ function UserOdots() {
     return null;
   } else {
     return (
-      <div className="user-odots">
+      <div className="odots">
         {data.user.odots.map(odot => (
           <Odot odot={odot} key={odot.id}/>
         ))}
@@ -23,4 +23,4 @@ function UserOdots() {
   }
 }
 
-export default UserOdots;
+export default Odots;

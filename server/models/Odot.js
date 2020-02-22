@@ -26,7 +26,7 @@ OdotSchema.statics.addDot = (odotId, dotId) => {
       )
     })
   })
-}
+};
 
 OdotSchema.statics.removeDot = (odotId, dotId) => {
   const Odot = mongoose.model("odot");

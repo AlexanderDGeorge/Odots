@@ -1,15 +1,25 @@
 import React, { useState } from 'react';
 import { useQuery, useMutation } from 'react-apollo';
-import { FETCH_DOT } from '../../graphql/queries';
-import { UPDATE_DOT } from '../../graphql/mutations';
-import { BsCircle } from 'react-icons/bs';
+import { FETCH_DOT, FETCH_ODOT } from '../../graphql/queries';
+import { UPDATE_DOT, DELETE_DOT } from '../../graphql/mutations';
+import { BsCircle, BsTrash } from 'react-icons/bs';
 import './dot.css';
 
 function Dot(props) {
   
+  const [complete, setComplete] = useState(props.dot.complete);
   const [title, setTitle] = useState("");
   const { loading, data } = useQuery(FETCH_DOT, { variables: { id: props.dot.id }})
   const [updateDot] = useMutation(UPDATE_DOT);
+  const [deleteDot] = useMutation(DELETE_DOT, {
+    update(cache, { data }) {
+      cache.writeQuery({
+        query: FETCH_ODOT,
+        variables: { id: props.odot.id },
+        data: { odot: data.removeOdotDot }
+      })
+    }
+  });
 
   function handleSubmit() {
     updateDot({
@@ -17,11 +27,17 @@ function Dot(props) {
     })
   }
 
-  function handleComplete(complete) {
-    complete = !complete;
+  function handleComplete() {
+    setComplete(!complete);
     console.log(complete)
     updateDot({
       variables: { id: props.dot.id, title, complete }
+    })
+  }
+
+  function handleDelete() {
+    deleteDot({
+      variables: { odotId: props.odot.id, dotId: props.dot.id }
     })
   }
 
@@ -29,16 +45,16 @@ function Dot(props) {
     return null;
   } else {
     let dot = data.dot;
-    let complete = dot.complete;
     console.log(dot);
     return (
       <div className="dot">
         <BsCircle 
           className="dot-task"
-          onClick={() => handleComplete(complete)}
+          onClick={handleComplete}
         />
         <div className="dot-title">
           <input
+            className={complete ? "dot-line" : ""}
             type="text"
             value={title}
             onChange={e => setTitle(e.target.value)}
@@ -47,13 +63,13 @@ function Dot(props) {
             required
           />
         </div>
+        <BsTrash 
+          className="dot-trash"
+          onClick={handleDelete}  
+        />
       </div>
     )
   }
-
-
-
-
 } 
 
 export default Dot;

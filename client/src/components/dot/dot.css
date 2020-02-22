@@ -26,3 +26,7 @@
   height: 100%;
   color: black;
 }
+
+.dot-line::placeholder {
+  text-decoration: line-through;
+}
