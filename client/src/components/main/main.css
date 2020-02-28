@@ -11,12 +11,10 @@
     height: 100vh;
     box-sizing: border-box;
     display: grid;
-    grid-template-rows: 10vh auto 5vw auto;
+    grid-template-rows: 10vh auto;
     grid-template-areas: 
       "header"
       "odots"
-      "."
-      "focus";
   }
 }
 
@@ -26,13 +24,11 @@
     height: 100vh;
     box-sizing: border-box;
     display: grid;
-    grid-template-rows: 10vh 5vw auto 5vw auto;
+    grid-template-rows: 10vh 5vw auto;
     grid-template-areas: 
       "header"
       "."
       "odots"
-      "."
-      "focus";
   }
 }
 
@@ -59,8 +55,4 @@
 
 .odots {
   grid-area: odots;
-}
-
-.focus {
-  grid-area: focus;
 }

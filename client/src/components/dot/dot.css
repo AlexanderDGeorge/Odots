@@ -4,6 +4,7 @@
   justify-content: space-between;
   padding: 10px;
   border-radius: 10px;
+  height: 50px;
 }
 
 .dot:hover {
@@ -29,4 +30,11 @@
 
 .dot-line::placeholder {
   text-decoration: line-through;
+}
+
+.drag {
+  width: 100px;
+  height: 100px;
+  background: hotpink;
+  border-radius: 50%;
 }

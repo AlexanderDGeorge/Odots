@@ -16,12 +16,14 @@ function Header() {
   function greeting() {
     let now = Date.now();
     let hour = new Date(now).getHours();
-    if (hour < 12) {
-      return `Good Morning, ${data.user.name}!`
-    } else if (hour < 17) {
-      return `Good Afternoon, ${data.user.name}!`
-    } else {
-      return `Good Evening, ${data.user.name}!`
+    if (data.user) {
+      if (hour < 12) {
+        return `Good Morning, ${data.user.name}!`
+      } else if (hour < 17) {
+        return `Good Afternoon, ${data.user.name}!`
+      } else {
+        return `Good Evening, ${data.user.name}!`
+      }
     }
   }
 

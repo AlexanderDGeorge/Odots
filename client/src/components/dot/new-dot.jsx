@@ -36,6 +36,9 @@ function NewDot(props) {
           required
         />
       </div>
+      <div>
+        
+      </div>
     </div>
   )
 }
