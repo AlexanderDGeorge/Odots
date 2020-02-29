@@ -15,6 +15,7 @@ function NewDot(props) {
     }
   });
   const [title, setTitle] = useState("");
+  const [open, setOpen] = useState(false);
 
   function handleSubmit() {
     newDot({
@@ -23,24 +24,33 @@ function NewDot(props) {
     setTitle("");
   }
 
-  return (
-    <div className="dot">
-      <BsPlus className="dot-add"/>
-      <div className="dot-title">
-        <input 
-          type="text"
-          value={title}
-          onChange={e => setTitle(e.target.value)}
-          onBlur={title ? handleSubmit : null}
-          placeholder="Create a Dot"
-          required
+  if (open) {
+    return (
+      <div className="dot">
+        <div className="dot-title">
+          <input 
+            type="text"
+            value={title}
+            onChange={e => setTitle(e.target.value)}
+            onBlur={title ? handleSubmit : null}
+            placeholder="Create a Dot"
+            required
+            autoFocus
+          />
+        </div>
+      </div>
+    )
+  } else {
+    return (
+      <div className="dot">
+        <BsPlus 
+          className="dot-title" 
+          onClick={() => setOpen(true)}  
         />
       </div>
-      <div>
-        
-      </div>
-    </div>
-  )
+    )
+  }
+
 }
 
 export default NewDot;

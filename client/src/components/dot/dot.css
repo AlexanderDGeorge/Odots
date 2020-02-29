@@ -3,8 +3,9 @@
   align-items: center;
   justify-content: space-between;
   padding: 10px;
-  border-radius: 10px;
   height: 50px;
+  background: white;
+  border-bottom: 1px solid black;
 }
 
 .dot:hover {
@@ -22,19 +23,45 @@
   height: auto;
 }
 
-.dot-title input::placeholder {
-  width: 100%;
+.dot-title {
   height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  text-align: left;
+}
+
+.dot-title input {
+  height: 80%;
+  width: auto;
+  font-size: 20px;
+}
+
+.dot-title input::placeholder {
+  width: auto;
+  height: 80%;
   color: black;
+  font-size: 20px;
 }
 
 .dot-line::placeholder {
   text-decoration: line-through;
 }
 
-.drag {
-  width: 100px;
-  height: 100px;
-  background: hotpink;
-  border-radius: 50%;
+.slide-container {
+  position: relative;
+}
+
+.slide-background {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.slide-background svg {
+  color: white;
+  height: 100%;
+  width: auto;
 }
