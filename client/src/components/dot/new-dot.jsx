@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useMutation } from 'react-apollo';
 import { NEW_DOT } from '../../graphql/mutations';
 import { FETCH_ODOT } from '../../graphql/queries';
-import { BsPlus } from 'react-icons/bs';
+import { BsPlus, BsCheckCircle, BsXCircle } from 'react-icons/bs';
 
 function NewDot(props) {
   const [newDot] = useMutation(NEW_DOT, {
@@ -27,24 +27,28 @@ function NewDot(props) {
   if (open) {
     return (
       <div className="dot">
-        <div className="dot-title">
+        <form className="dot-title new-dot-form" onSubmit={title ? handleSubmit : () => setOpen(false)}>
           <input 
             type="text"
             value={title}
             onChange={e => setTitle(e.target.value)}
-            onBlur={title ? handleSubmit : null}
-            placeholder="Create a Dot"
+            placeholder="title"
             required
             autoFocus
           />
-        </div>
+          <button type="submit">
+              <BsCheckCircle onClick={title ? handleSubmit : null} className="check"/>
+          </button>
+          <button type="reset">
+            <BsXCircle onClick={() => setOpen(false)} className="x" />
+          </button>
+        </form>
       </div>
     )
   } else {
     return (
-      <div className="dot">
+      <div className="dot new-dot">
         <BsPlus 
-          className="dot-title" 
           onClick={() => setOpen(true)}  
         />
       </div>

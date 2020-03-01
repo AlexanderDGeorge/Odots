@@ -1,14 +1,13 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { useHistory } from 'react-router-dom';
+import React, { useEffect, useRef } from 'react';
 import './modal.css';
 
 // takes in a component prop (what you want to render inside the modal)
 
 function Modal(props) {
-
-  const [show, setShow] = useState(true);
+  console.log(props.setShow)
+  const show = props.show;
+  const setShow = props.setShow;
   const ref = useRef(null);
-  const history = useHistory();
 
   useEffect(() => {
     document.addEventListener("mousedown", handleClick);
@@ -20,7 +19,6 @@ function Modal(props) {
   function handleClick(e) {
     if (ref.current && !ref.current.contains(e.target)) {
       setShow(false);
-      history.push("/");
     }
   }
 

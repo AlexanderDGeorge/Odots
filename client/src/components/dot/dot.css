@@ -4,12 +4,8 @@
   justify-content: space-between;
   padding: 10px;
   height: 50px;
-  background: white;
-  border-bottom: 1px solid black;
-}
-
-.dot:hover {
-  box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.2);
+  background: #555555;
+  border-bottom: 1px solid #333333;
 }
 
 .dot-task {
@@ -24,24 +20,23 @@
 }
 
 .dot-title {
-  height: 100%;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  text-align: left;
+  height: 40px;
+  width: 200px;
+  font-size: 24px;
+  color: white;
 }
 
 .dot-title input {
   height: 80%;
   width: auto;
-  font-size: 20px;
+  font-size: 24px;
+  background: transparent;
 }
 
 .dot-title input::placeholder {
   width: auto;
   height: 80%;
-  color: black;
-  font-size: 20px;
+  font-size: 24px;
 }
 
 .dot-line::placeholder {
@@ -64,4 +59,57 @@
   color: white;
   height: 100%;
   width: auto;
+}
+
+.dot-settings {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.new-dot {
+  background: #555555;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.new-dot svg {
+  width: 40px;
+  height: auto;
+  color: white;
+}
+
+.new-dot-form {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.new-dot-form input {
+  color: white;
+}
+
+.new-dot-form input::placeholder {
+  color: white;
+}
+
+.new-dot-form button {
+  background: transparent;
+}
+
+.dot-content {
+  display: flex;
+  align-items: center;
+}
+
+.dot-content svg {
+  height: 25px;
+  width: auto;
+  margin-right: 30px;
+  color: white;
 }

@@ -14,16 +14,18 @@
 }
 
 .show {
-  z-index: 1;
+  z-index: 3;
 }
 
 .modal-box {
   height: 50%;
   width: 50%;
+  min-width: 350px;
   background-color: white;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
   border-radius: 10px;
+  z-index: 3;
 }
