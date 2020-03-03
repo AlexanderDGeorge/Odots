@@ -4,7 +4,6 @@ import './modal.css';
 // takes in a component prop (what you want to render inside the modal)
 
 function Modal(props) {
-  console.log(props.setShow)
   const show = props.show;
   const setShow = props.setShow;
   const ref = useRef(null);

@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import Register from './register.jsx';
 import Login from './login.jsx';
 import Logout from './logout';
-import Modal from '../modal/modal';
 import { useQuery } from 'react-apollo';
 import { IS_LOGGED_IN } from '../../graphql/queries';
 
@@ -31,11 +30,11 @@ function Session() {
   } else {
     if (data.isLoggedIn) {
       return (
-        <Modal component={<Logout />}/>
+        <Logout />
       )
     } else {
       return(
-        <Modal component={<LogReg />}/>
+        <LogReg />
       )
     }
   }
