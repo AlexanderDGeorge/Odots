@@ -103,9 +103,12 @@ const mutation = new GraphQLObjectType({
     },
     newDot: {
       type: DotType,
-      args: { title: { type: GraphQLString } },
-      resolve(_, { title }) {
-        return new Dot({ title }).save();
+      args: { 
+        title: { type: GraphQLString },
+        detail: { type: GraphQLString },
+      },
+      resolve(_, { title, detail }) {
+        return new Dot({ title, detail }).save();
       }
     },
     updateDot: {
@@ -113,13 +116,15 @@ const mutation = new GraphQLObjectType({
       args: {
         id: { type: new GraphQLNonNull(GraphQLID) },
         title: { type: GraphQLString },
+        detail: { type: GraphQLString },
         complete: { type: GraphQLBoolean },
       },
-      resolve(_, { id, title, complete }) {
+      resolve(_, { id, title, detail, complete }) {
         const newDot = {};
         if (id) newDot.id = id;
         if (title) newDot.title = title;
-        newDot.complete = complete;
+        if (detail) newDot.detail = detail;
+        newDot.complete = !complete;
         return Dot.findByIdAndUpdate(
           { _id: id },
           { $set: newDot },

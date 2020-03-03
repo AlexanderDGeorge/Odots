@@ -14,6 +14,7 @@ const DotType = new GraphQLObjectType({
   fields: () => ({
     id: { type: GraphQLID },
     title: { type: GraphQLString },
+    detail: { type: GraphQLString },
     complete: { type: GraphQLBoolean },
     odot: {
       type: require("./odot_type"),

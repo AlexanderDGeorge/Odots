@@ -5,7 +5,8 @@ import { DELETE_DOT, UPDATE_DOT } from '../../graphql/mutations'
 import { BsXCircle, BsCheckCircle } from 'react-icons/bs';
 
 function DotSettings(props) {
-    const [title, setTitle] = useState('');
+    const [title, setTitle] = useState(props.dot.title);
+    const [detail, setDetail] = useState(props.dot.detail);
     const { loading, data } = useQuery(FETCH_DOT, { variables: { id: props.dot.id }})
     const [updateDot] = useMutation(UPDATE_DOT);
     const [deleteDot] = useMutation(DELETE_DOT, {
@@ -19,8 +20,9 @@ function DotSettings(props) {
     });
 
     function handleSubmit() {
+        console.log(title, detail)
         updateDot({
-            variables: { id: props.dot.id, title }
+            variables: { id: props.dot.id, title, detail }
         })
     }
 
@@ -47,6 +49,12 @@ function DotSettings(props) {
                         placeholder={dot.title}
                         autoFocus
                         required
+                    />
+                    <input 
+                        type="text"
+                        value={detail}
+                        onChange={e => setDetail(e.target.value)}
+                        placeholder={ dot.detail > 0 ? dot.detail : 'details' }
                     />
                 </div>
                 <button onClick={title ? handleSubmit : null}>

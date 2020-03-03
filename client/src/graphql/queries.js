@@ -27,6 +27,7 @@ export const FETCH_ODOT = gql`
       dots {
         id
         title
+        detail
         complete
       }
     }
@@ -38,6 +39,7 @@ export const FETCH_DOT = gql`
     dot(id: $id) {
       id
       title
+      detail
       complete
     }
   }

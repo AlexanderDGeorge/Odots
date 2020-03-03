@@ -6,6 +6,9 @@ const DotSchema = new Schema({
     type: String,
     required: true
   },
+  detail: {
+    type: String,
+  },
   complete: {
     type: Boolean,
     default: false

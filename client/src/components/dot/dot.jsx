@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { useSpring, animated, interpolate } from 'react-spring';
 import { useDrag } from 'react-use-gesture';
-import { useQuery } from 'react-apollo';
+import { useQuery, useMutation } from 'react-apollo';
 import { FETCH_DOT } from '../../graphql/queries';
+import { UPDATE_DOT } from '../../graphql/mutations';
 import { BsGear, BsCheckCircle, BsCircle } from 'react-icons/bs';
 import Modal from '../modal/modal';
 import DotSettings from './dot-settings';
@@ -10,9 +11,26 @@ import './dot.css';
 
 function Dot(props) {
   
-  const { loading, data } = useQuery(FETCH_DOT, { variables: { id: props.dot.id }})
+  const [complete, setComplete] = useState(props.dot.complete);
   const [openModal, setOpenModal] = useState(false);
+  const { loading, data } = useQuery(FETCH_DOT, { variables: { id: props.dot.id }})
+  const [updateDot] = useMutation(UPDATE_DOT, {
+    update(cache, { data }) {
+      cache.writeQuery({
+        query: FETCH_DOT,
+        variables: { id: props.dot.id },
+        data: { dot: data.updateDot }
+      })
+    }
+  });
 
+  function handleComplete() {
+    setComplete(!complete);
+    updateDot({
+      variables: { id: props.dot.id, complete }
+    })
+  }
+  
   function Slide({item}) {
     const [spring, setSpring] = useSpring(() => ({
       opacity: 1, zIndex: '0', scale: '1', x: 0, y: 0, bg: 'linear-gradient(120deg, #cccccc 0%, #cccccc 100%)'
@@ -31,6 +49,9 @@ function Dot(props) {
         setSpring({ zIndex: "0", scale: '1', x: 0, y: 0, opacity: 1 })
         if (dx < -150) {
           setOpenModal(true);
+        }
+        if (dx > 150) {
+          handleComplete();
         }
       }
     })
@@ -69,13 +90,15 @@ function Dot(props) {
       <div>
         <Slide item={ 
           <div className="dot-content">
-            <BsCircle />
+            <div onClick={handleComplete}>
+              {complete ? <BsCheckCircle/> : <BsCircle />}
+            </div>
             <div>
               <div className="dot-title">
                 {data.dot.title}
               </div>
               <div className="dot-detail">
-                detail
+                {data.dot.detail}
               </div>
             </div>
           </div> 

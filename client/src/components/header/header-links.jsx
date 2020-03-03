@@ -12,7 +12,7 @@ function HeaderLinks() {
         <BsGearFill />
         <BsPersonFill onClick={() => {setShowSession(true)}}/>
         {showSettings ? <Modal show={showSettings} setShow={val => setShowSettings(val)} component={null} /> : null }
-        <Modal show={showSession} setShow={val => setShowSession(val)} component={<Session />} />
+        {showSession ? <Modal show={showSession} setShow={val => setShowSession(val)} component={<Session />} /> : null }
     </div>
   )
 }

@@ -12,14 +12,18 @@ function Odots() {
   if (loading) {
     return null;
   } else {
-    return (
-      <div className="odots">
-        {data.user.odots.map(odot => (
-          <Odot odot={odot} key={odot.id}/>
-        ))}
-        <NewOdot />
-      </div>
-    )
+    if (data.user) {
+      return (
+        <div className="odots">
+          {data.user.odots.map(odot => (
+            <Odot odot={odot} key={odot.id}/>
+          ))}
+          <NewOdot />
+        </div>
+      )
+    } else {
+      return null;
+    }
   }
 }
 

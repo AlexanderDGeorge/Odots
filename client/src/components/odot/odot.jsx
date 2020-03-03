@@ -33,13 +33,32 @@ function Odot(props) {
     });
   }
 
+  function determineColor() {
+    // animate with react spring later
+    let dots = data.odot.dots;
+    if (dots.length === 0) { 
+      return "white"
+    } else {
+      let complete = 0;
+      dots.forEach(dot => { if (dot.complete) complete++ })
+      const total = ( complete / dots.length ) * 500;
+      const g = total;
+      const r = total > 250 ? 500 - total : 250; 
+      return `rgb(${r}, ${g}, 0)`
+    }
+  }
+
   if (loading) {
     return null;
   } else {
     const odot = data.odot;
+    const headerColor = determineColor();
     return (
       <div className="odot">
-        <div className="odot-header">
+        <div 
+          className="odot-header"
+          style={{ backgroundColor: headerColor}}
+        >
           <input
             className="odot-title"
             type="text"
@@ -49,7 +68,7 @@ function Odot(props) {
             placeholder={odot.title}
             required
           />
-          <BsXCircle className="odot-trash" onClick={handleDelete}/>
+          <BsXCircle className="x" onClick={handleDelete}/>
         </div>
         <div className="odot-content">
           {odot.dots.map(dot => (

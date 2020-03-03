@@ -72,6 +72,7 @@ export const NEW_DOT = gql`
       dots {
         id
         title
+        detail
         complete
       }
     }
@@ -79,10 +80,11 @@ export const NEW_DOT = gql`
 `;
 
 export const UPDATE_DOT = gql`
-  mutation UpdateDot($id: ID!, $title: String, $complete: Boolean) {
-    updateDot(id: $id, title: $title, complete: $complete) {
+  mutation UpdateDot($id: ID!, $title: String, $detail: String, $complete: Boolean) {
+    updateDot(id: $id, title: $title, detail: $detail, complete: $complete) {
       id
       title
+      detail
       complete
     }
   }

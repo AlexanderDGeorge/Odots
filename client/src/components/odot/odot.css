@@ -30,6 +30,7 @@
   justify-content: space-between;
   align-items: center;
   border-bottom: 2px solid #333333;
+  border-radius: 10px 10px 0 0;
 }
 
 .odot-logo {
@@ -44,6 +45,7 @@
   justify-content: center;
   padding: 0 20px;
   font-size: 30px;
+  background: transparent;
 }
 
 .odot-title::placeholder {
@@ -172,7 +174,7 @@
 .x {
   height: 40px;
   width: auto;
-  color: lightgray;
+  color: #333333;
 }
 
 .x:hover {
