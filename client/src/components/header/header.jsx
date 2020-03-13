@@ -1,17 +1,17 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useQuery } from 'react-apollo';
 import { FETCH_USER } from '../../graphql/queries';
 import Icon from './icon';
-import HeaderLinks from './header-links';
+import HeaderSession from './header-session';
 
 function Header() {
 
-  const [open, setOpen] = useState(false);
+//   const [open, setOpen] = useState(false);
   const {loading, data} = useQuery(FETCH_USER);
 
-  function handleClick() {
-    setOpen(!open);
-  }
+//   function handleClick() {
+//     setOpen(!open);
+//   }
 
   function greeting() {
     let now = Date.now();
@@ -28,23 +28,36 @@ function Header() {
 
   if (loading) return null;
   else {
-    if (open) {
       return (
-        <div className="header">
-          <Icon handleClick={handleClick} />
-          <HeaderLinks />
-        </div>
-      )
-    } else {
-      return (
-        <div className="header">
-          <Icon handleClick={handleClick}/>
-          <div className="header-links">
-            {greeting()}
+          <div className="header">
+              <Icon />
+              <div className="header-links">
+                  {greeting()}
+              </div>
+              <HeaderSession />
           </div>
-        </div>
       )
-    }
   }
+
+//   if (loading) return null;
+//   else {
+//     if (open) {
+//       return (
+//         <div className="header">
+//           <Icon handleClick={handleClick} />
+//           <HeaderLinks />
+//         </div>
+//       )
+//     } else {
+//       return (
+//         <div className="header">
+//           <Icon handleClick={handleClick}/>
+//           <div className="header-links">
+//             {greeting()}
+//           </div>
+//         </div>
+//       )
+//     }
+//   }
 }
  export default Header;

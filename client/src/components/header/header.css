@@ -4,7 +4,7 @@
     width: 100%;
     display: grid;
     grid-template-columns: 10vh auto;
-    grid-template-areas: "icon options";
+    grid-template-areas: "icon session";
   }
 }
 
@@ -14,7 +14,7 @@
     width: 100%;
     display: grid;
     grid-template-columns: 10vh auto auto;
-    grid-template-areas: "icon options .";
+    grid-template-areas: "icon options session";
   }
 }
 
@@ -51,4 +51,20 @@
   width: 50px;
   height: auto;
   color: #555555;
+}
+
+.header-session {
+    grid-area: session;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.session-button {
+    width: 75px;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 10px;
+    cursor: pointer;
 }
