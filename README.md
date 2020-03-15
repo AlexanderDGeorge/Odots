@@ -1,4 +1,4 @@
-# ODOT
+# Odots
 
 ### Overview
-ODOT is a minimalist todo application. With ODOT users can create ODOTS (todo lists) in a hassle free and uncluttered way.
+Odots is a minimalist todo / list application. Built with MongoDB, Node, GraphQL, React, and Apollo. Odots was a training ground for me to play around with the react-spring library
