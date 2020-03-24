@@ -12,7 +12,7 @@ import './dot.css';
 function Dot(props) {
   
   const [complete, setComplete] = useState(props.dot.complete);
-  const [openModal, setOpenModal] = useState(false);
+  const [open, setOpen] = useState(false);
   const { loading, data } = useQuery(FETCH_DOT, { variables: { id: props.dot.id }})
   const [updateDot] = useMutation(UPDATE_DOT, {
     update(cache, { data }) {
@@ -48,7 +48,7 @@ function Dot(props) {
       else {
         setSpring({ zIndex: "0", scale: '1', x: 0, y: 0, opacity: 1 })
         if (dx < -150) {
-          setOpenModal(true);
+          setOpen(true);
         }
         if (dx > 150) {
           handleComplete();
@@ -79,7 +79,7 @@ function Dot(props) {
         >
           {item}
         </animated.div>
-        {openModal ? <Modal show={openModal} setShow={val => setOpenModal(val)} component={<DotSettings dot={data.dot} odot={props.odot}/>} /> : null}
+        {open ? <Modal setOpen={val => setOpen(val)} component={<DotSettings dot={data.dot} odot={props.odot}/>} /> : null}
       </animated.div>
     );
   }  

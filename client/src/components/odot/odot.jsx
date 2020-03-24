@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useQuery, useMutation } from 'react-apollo';
 import { FETCH_ODOT, FETCH_USER } from '../../graphql/queries';
 import { BsXCircle } from 'react-icons/bs';
@@ -10,6 +10,7 @@ import './odot.css';
 function Odot(props) {
 
   const [title, setTitle] = useState("");
+  const [color, setColor] = useState("white");
   const { loading, data } = useQuery(FETCH_ODOT, { variables: { id: props.odot.id }})
   const [updateOdot] = useMutation(UPDATE_ODOT);
   const [deleteOdot] = useMutation(DELETE_ODOT, {
@@ -20,6 +21,10 @@ function Odot(props) {
       })
     }
   });
+
+  useEffect(() => {
+    if (data) setColor(determineColor())
+  }, [data])
 
   function handleSubmit() {
     updateOdot({
@@ -57,7 +62,7 @@ function Odot(props) {
       <div className="odot">
         <div 
           className="odot-header"
-          style={{ backgroundColor: headerColor}}
+          style={{ backgroundColor: color}}
         >
           <input
             className="odot-title"

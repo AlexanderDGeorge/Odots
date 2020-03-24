@@ -9,35 +9,52 @@ import './session.css';
 
 function Session() {
 
-  const [login, setLogin] = useState(false);
-  const { loading, data } = useQuery(IS_LOGGED_IN);
+    const [tab, setTab] = useState("Login");
+    const { loading, data } = useQuery(IS_LOGGED_IN);
 
-  function LogReg() {
-    return(
-      <div className="tab-box">
-        <div className="tab-box-buttons">
-          <button onClick={() => setLogin(false)}>Register</button>
-          <div></div>
-          <button onClick={() => setLogin(true)}>Log In</button>
-        </div>
-        {login ? <Login /> : <Register />}
-      </div>
-    )
-  }
-
-  if (loading) {
-    return null;
-  } else {
-    if (data.isLoggedIn) {
-      return (
-        <Logout />
-      )
-    } else {
-      return(
-        <LogReg />
-      )
+    function tabs() {
+        return (
+            <div className="session-tabs">
+                <div className="session-tab" onClick={() => setTab("Login")}>Login</div>
+                <div className="session-tab" onClick={() => setTab("Register")}>Register</div>
+                <div className="session-tab" onClick={() => setTab("Demo")}>Demo</div>
+            </div>
+        )
     }
-  }
+
+    function whichTab() {
+        switch (tab) {
+            case "Login": return <Login demo={false}/>
+            case "Register": return <Register />
+            case "Demo": return <Login demo={true}/>
+            default: return <Login />
+        }
+    }
+
+    if (loading) return null;
+    else {
+        if (data.isLoggedIn) return <Logout/>
+        else {
+            return <div className="session">
+                {tabs()}
+                {whichTab()}
+            </div>
+        }
+    }
+
+//   if (loading) {
+//     return null;
+//   } else {
+//     if (data.isLoggedIn) {
+//       return (
+//         <Logout />
+//       )
+//     } else {
+//       return(
+//         <LogReg />
+//       )
+//     }
+//   }
 }
 
 export default Session;

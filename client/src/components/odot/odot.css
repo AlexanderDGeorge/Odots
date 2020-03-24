@@ -1,9 +1,9 @@
 .odots {
   display: flex;
   height: 100%;
-  overflow: hidden;
   padding: 10px 0; 
   box-sizing: border-box;
+  overflow-x: scroll;
 }
 
 .odot {

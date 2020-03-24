@@ -1,73 +1,39 @@
-.session-modal {
-  box-sizing: content-box;
-  position: fixed;
-  left: 0;
-  top: 0;
-  height: 100vh;
-  width: 100vw;
-  background-color: rgba(0, 0, 0, 0.5);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  z-index: 1;
+.session {
+    height: 100%;
+    width: 100%;
 }
 
-.tab-box {
-  height: 100%;
-  width: 100%;
-  background-color: white;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  border-radius: 10px;
+.session-tabs {
+    height: 10%;
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    background: #999999;
 }
 
-.tab-box-buttons{
-  width: 100%;
-  height: 10%;
-  display: flex;
-  justify-content: space-evenly;
-  background-color: rgb(240, 240, 240);
-  border-radius: 10px 10px 0 0;
-}
-
-.tab-box-buttons button{
-  background-color: transparent;
-  outline: none;
-}
-
-.tab-box-buttons div{
-  height: 100%;
-  border: .5px solid black;
-  transform: rotate(19deg);
+.session-tab {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
 }
 
 .session-form {
-  height: 100%;
-  width: 60%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-}
-
-.session-form input {
-  height: 40px;
-  outline: none;
+    height: 90%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
 }
 
 .session-form button {
-  border-radius: 40px;
-  height: 40px;
-  outline: none;
-}
-
-.logout {
-  height: 40px;
-  width: 30%;
-  background-color: rgb(221, 221, 221);
-  border-radius: 10px;
-  text-align: center;
-  margin-top: 40%;
+    padding: 20px;
+    font-size: 16px;
+    border-radius: 10px;
+    color: white;
+    background: limegreen;
 }

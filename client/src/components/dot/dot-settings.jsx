@@ -20,22 +20,20 @@ function DotSettings(props) {
     });
 
     function handleSubmit() {
-        console.log(title, detail)
         updateDot({
             variables: { id: props.dot.id, title, detail }
-        })
+        });
     }
 
     function handleDelete() {
         deleteDot({
             variables: { odotId: props.odot.id, dotId: props.dot.id }
-        })
+        });
     }
 
     if (loading) return null
     else {
         let dot = data.dot;
-        console.log(dot);
         return (
             <div className="dot-settings">
                 <div 
