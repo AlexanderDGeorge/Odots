@@ -1,5 +1,57 @@
 .landing {
     height: 100vh;
     width: 100vw;
-    background: linear-gradient(45deg, var(--blue), transparent)
+    background: linear-gradient(45deg, white, transparent)
+}
+
+.landing-header {
+    height: 10%;
+    width: 100%;
+    background: rgb(0,0,0,0.5);
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.landing-header-title {
+    padding-left: 40px;
+    font-size: 30px;
+}
+
+.landing-header-links {
+    display: flex;
+}
+
+.landing-header-links * {
+    padding: 0 20px;
+    text-decoration: none;
+    color: white;
+    cursor: pointer;
+}
+
+.landing-header-links *:hover {
+    color: var(--red);
+}
+
+.landing-content {
+    height: 85%;
+    width: 100%;
+}
+
+.landing-footer {
+    height: 20%;
+    width: 100%;
+    background: rgb(0, 0, 0);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    color: white;
+}
+
+.landing-footer svg {
+    height: 50px;
+    width: auto;
+    padding: 20px;
+    color: white;
 }

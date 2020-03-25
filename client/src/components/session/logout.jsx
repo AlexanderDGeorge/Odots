@@ -1,36 +1,23 @@
 import React from 'react';
-import { ApolloConsumer, useQuery } from 'react-apollo';
-import { IS_LOGGED_IN } from '../../graphql/queries';
+import { ApolloConsumer } from 'react-apollo';
 
 function Logout() {
-  const { loading, data } = useQuery(IS_LOGGED_IN);
 
-  if (loading) {
-    return null;
-  } else {
-    if (data.isLoggedIn) {
-      return (
-        <ApolloConsumer>{client => (
-          <div
-            className="logout"
-            onClick={ e => {
-              e.preventDefault();
-              localStorage.removeItem("auth-token");
-              client.writeData({ data: { isLoggedIn: false } });
-            }}>
-              Logout
-          </div>
+    function handleClick(e, client) {
+        e.preventDefault();
+        localStorage.removeItem("auth-token");
+        client.writeData({ data: { isLoggedIn: false }})
+    }
+
+    return (
+        <ApolloConsumer>
+        {client => (
+            <div className="logout nav-link" onClick={e => handleClick(e, client)}>
+                Logout
+            </div>        
         )}
         </ApolloConsumer>
-      )
-    } else {
-      return (
-        <div>
-          Successfully Logged Out!
-        </div>
-      )
-    }
-  }
+    )
 }
 
 export default Logout;
