@@ -14,6 +14,7 @@ export const FETCH_USER = gql`
       odots {
         id
         title
+        color
       }
     }
   }
@@ -24,6 +25,7 @@ export const FETCH_ODOT = gql`
     odot(id: $id) {
       id
       title
+      color
       dots {
         id
         title

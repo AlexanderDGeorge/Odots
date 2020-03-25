@@ -69,21 +69,26 @@ const mutation = new GraphQLObjectType({
     },
     newOdot: {
       type: OdotType,
-      args: { title: { type: GraphQLString } },
-      resolve(_, { title }) {
-        return new Odot({ title }).save();
+      args: { 
+          title: { type: GraphQLString },
+          color: { type: GraphQLString },
+        },
+      resolve(_, { title, color }) {
+        return new Odot({ title, color }).save();
       }
     },
     updateOdot: {
       type: OdotType,
       args: {
         id: { type: new GraphQLNonNull(GraphQLID) },
-        title: { type: GraphQLString }
+        title: { type: GraphQLString },
+        color: { type: GraphQLString },
       },
-      resolve(_, { id, title }) {
+      resolve(_, { id, title, color }) {
         const newOdot = {};
         if (id) newOdot.id = id;
         if (title) newOdot.title = title;
+        if (color) newOdot.color = color;
         return Odot.findByIdAndUpdate(
           { _id: id },
           { $set: newOdot },
@@ -144,10 +149,13 @@ const mutation = new GraphQLObjectType({
     },
     newUserOdot: {
       type: UserType,
-      args: { title: { type: new GraphQLNonNull(GraphQLString) } },
-      async resolve(_, { title }, ctx) {
+      args: { 
+          title: { type: new GraphQLNonNull(GraphQLString) },
+          color: { type: new GraphQLNonNull(GraphQLString) },
+        },
+      async resolve(_, { title, color }, ctx) {
         const validUser = await AuthService.verifyUser({ token: ctx.token });
-        return new Odot({ title }).save().then(odot => {
+        return new Odot({ title, color }).save().then(odot => {
           if (validUser.loggedIn) {
             return User.addOdot(validUser.id, odot._id)
           }

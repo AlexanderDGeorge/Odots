@@ -12,7 +12,8 @@ export default function Nav() {
     const [active, setActive] = useState(0);
     const { loading, data } = useQuery(FETCH_USER);
 
-    return (
+    if (loading) return null;
+    else return (
         <div className="nav">
             <Link className={active === 1 ? "active nav-link" : "nav-link"} onClick={() => setActive(1)} to="/today">Today</Link>
             <Link className={active === 2 ? "active nav-link" : "nav-link"} onClick={() => setActive(2)} to="/week">This Week</Link>
@@ -20,13 +21,13 @@ export default function Nav() {
                 <FiChevronRight className={open ? "nav-open" : "nav-close"}/>
                 Odots
             </div>
-            {open && !loading ? <div className="nav-odots">
-                {data.user.odots.map((odot, i) => (
+            {open ? <div className="nav-odots">
+                {data.user.odots.map((odot, i) => { console.log(odot); return (
                     <div className={active === i + 3 ? "active nav-link" : "nav-link"} onClick={() => setActive(i + 3)} key={i}>
-                        <FiCircle />
+                        <FiCircle color={odot.color}/>
                         {odot.title}
                     </div>
-                ))}
+                )})}
             </div> : null }
             <Logout className="nav-link"/>
         </div>

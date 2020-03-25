@@ -15,6 +15,7 @@ const OdotType = new GraphQLObjectType({
   fields: () => ({
     id: { type: GraphQLID },
     title: { type: GraphQLString },
+    color: { type: GraphQLString },
     user: {
       type: require("./user_type"),
       resolve(parentValue) {

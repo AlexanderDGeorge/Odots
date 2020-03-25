@@ -5,26 +5,26 @@ import Odot from './odot';
 import NewOdot from './new-odot';
 import './odot.css';
 
-function Odots() {
+function Odots(props) {
 
-  const { loading, data } = useQuery(FETCH_USER)
+    const { odotId } = props;
+    const { loading, data } = useQuery(FETCH_USER)
 
-  if (loading) {
-    return null;
-  } else {
-    if (data.user) {
-      return (
-        <div className="odots">
-          {data.user.odots.map(odot => (
-            <Odot odot={odot} key={odot.id}/>
-          ))}
-          <NewOdot />
-        </div>
-      )
+    if (loading) {
+        return null;
     } else {
-      return null;
+        if (data.user) {
+        return (
+            <div className="odots">
+                {data.user.odots.map(odot => (
+                    <Odot odot={odot} key={odot.id}/>
+                ))}
+                <NewOdot />
+            </div>
+        )} else {
+            return null;
+        }
     }
-  }
 }
 
 export default Odots;

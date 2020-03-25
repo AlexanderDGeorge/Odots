@@ -6,6 +6,10 @@ const OdotSchema = new Schema({
     type: String,
     required: true
   },
+  color: {
+    type: String,
+    default: 'red'
+  },
   dots: [
     {
       type: Schema.Types.ObjectId,

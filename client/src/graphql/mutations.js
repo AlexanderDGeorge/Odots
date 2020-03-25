@@ -30,23 +30,25 @@ export const REGISTER_USER = gql`
 `;
 
 export const NEW_ODOT = gql`
-  mutation NewOdot($title: String!) {
-    newUserOdot(title: $title) {
+  mutation NewOdot($title: String!, $color: String) {
+    newUserOdot(title: $title, color: $color) {
       id
       name
       odots {
         id
         title
+        color
       }
     }
   }
 `;
 
 export const UPDATE_ODOT = gql`
-  mutation UpdateOdot($id: ID!, $title: String!) {
-    updateOdot(id: $id, title: $title) {
+  mutation UpdateOdot($id: ID!, $title: String!, $color: String) {
+    updateOdot(id: $id, title: $title, color: $color) {
       id
       title
+      color
     }
   }
 `;
