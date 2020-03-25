@@ -5,15 +5,12 @@ import Odot from './odot';
 import NewOdot from './new-odot';
 import './odot.css';
 
-function Odots(props) {
+function Odots() {
 
-    const { odotId } = props;
-    const { loading, data } = useQuery(FETCH_USER)
+    const { loading, data } = useQuery(FETCH_USER);
 
-    if (loading) {
-        return null;
-    } else {
-        if (data.user) {
+    if (loading) { return null }
+    else {
         return (
             <div className="odots">
                 {data.user.odots.map(odot => (
@@ -21,9 +18,7 @@ function Odots(props) {
                 ))}
                 <NewOdot />
             </div>
-        )} else {
-            return null;
-        }
+        )
     }
 }
 

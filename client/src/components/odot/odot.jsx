@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useQuery, useMutation } from 'react-apollo';
 import { FETCH_ODOT, FETCH_USER } from '../../graphql/queries';
 import { BsXCircle } from 'react-icons/bs';
@@ -10,7 +10,6 @@ import './odot.css';
 function Odot(props) {
 
   const [title, setTitle] = useState("");
-  const [color, setColor] = useState("white");
   const { loading, data } = useQuery(FETCH_ODOT, { variables: { id: props.odot.id }})
   const [updateOdot] = useMutation(UPDATE_ODOT);
   const [deleteOdot] = useMutation(DELETE_ODOT, {
@@ -21,10 +20,6 @@ function Odot(props) {
       })
     }
   });
-
-  useEffect(() => {
-    if (data) setColor(determineColor())
-  }, [data])
 
   function handleSubmit() {
     updateOdot({
@@ -38,31 +33,16 @@ function Odot(props) {
     });
   }
 
-  function determineColor() {
-    // animate with react spring later
-    let dots = data.odot.dots;
-    if (dots.length === 0) { 
-      return "white"
-    } else {
-      let complete = 0;
-      dots.forEach(dot => { if (dot.complete) complete++ })
-      const total = ( complete / dots.length ) * 500;
-      const g = total;
-      const r = total > 250 ? 500 - total : 250; 
-      return `rgb(${r}, ${g}, 0)`
-    }
-  }
-
   if (loading) {
     return null;
   } else {
     const odot = data.odot;
-    const headerColor = determineColor();
+    console.log(odot)
     return (
       <div className="odot">
         <div 
           className="odot-header"
-          style={{ backgroundColor: color}}
+          style={{ backgroundColor: odot.color}}
         >
           <input
             className="odot-title"

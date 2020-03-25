@@ -30,14 +30,15 @@ export const REGISTER_USER = gql`
 `;
 
 export const NEW_ODOT = gql`
-  mutation NewOdot($title: String!, $color: String) {
-    newUserOdot(title: $title, color: $color) {
+  mutation newOdot($title: String!, $color: String, $date: String) {
+    newUserOdot(title: $title, color: $color, date: $date) {
       id
       name
       odots {
         id
         title
         color
+        date
       }
     }
   }

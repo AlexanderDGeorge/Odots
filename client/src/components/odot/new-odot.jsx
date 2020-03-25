@@ -25,16 +25,14 @@ function NewOdot() {
         return today;
     }
     
-    function handleSubmit(title, color) {
-        // console.log(color);
-        // color === "" ? 
-        // newOdot({ variables: { title, color }}) : 
-        newOdot({ variables: { title }})
+    function handleSubmit(title, color, date) {
+        newOdot({ variables: { title, color, date }})
     }
   
     function Card() {
         const [title, setTitle] = useState("");
-        const [color, setColor] = useState("");
+        const [color, setColor] = useState("Red");
+        const [date, setDate] = useState("");
         const [flipped, set] = useState(false);
         const { transform, opacity } = useSpring({
             opacity: flipped ? 1 : 0,
@@ -64,14 +62,22 @@ function NewOdot() {
                             autoFocus
                             required
                         />
-                        <label htmlFor="color">Date</label>
+                        <label htmlFor="color">Color</label>
                         <select name="color" onChange={e => setColor(e.target.value)}>
-                            <option value="blue">Blue</option>
                             <option value="red">Red</option>
+                            <option value="blue">Blue</option>
                             <option value="green">Green</option>
                         </select>
+                        <label htmlFor="date">Date</label>
+                        <input 
+                            name="date"
+                            type="date"
+                            value={date}
+                            onChange={e => setDate(e.target.value)}
+                            min={getDate()}
+                        />
                         <button type="submit">
-                            <BsCheckCircle onClick={title ? () => handleSubmit(title, color) : null} className="check"/>
+                            <BsCheckCircle onClick={title ? () => handleSubmit(title, color, date) : null} className="check"/>
                         </button>
                         <button type="reset">
                             <BsXCircle onClick={() => set(false)} className="x"/>

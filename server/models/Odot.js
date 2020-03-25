@@ -7,8 +7,11 @@ const OdotSchema = new Schema({
     required: true
   },
   color: {
-    type: String,
-    default: 'red'
+      type: String,
+      default: 'red'
+  },
+  date: {
+      type: String
   },
   dots: [
     {

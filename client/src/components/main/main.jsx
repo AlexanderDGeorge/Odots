@@ -1,10 +1,12 @@
 import React from 'react';
+import { Switch, Route } from 'react-router-dom';
 import { useQuery } from 'react-apollo';
 import { IS_LOGGED_IN } from '../../graphql/queries';
 import Landing from '../landing/landing';
 import Odots from '../odot/odots';
 import Nav from '../nav/nav';
-import Top from '../top/top';
+import Today from '../today/today';
+import Week from '../week/week';
 import './main.css'
 
 function Main() {
@@ -15,9 +17,12 @@ function Main() {
     else {
         if (data.isLoggedIn) {
             return <div className="main orange">
-                {/* <Top /> */}
                 <Nav />
-                <Odots />
+                <Switch>
+                    <Route path="/today" component={Today} />
+                    <Route path="/week" component={Week} />
+                    <Route path="/" component={Odots} />
+                </Switch>
             </div>
         } else {
             return <Landing />

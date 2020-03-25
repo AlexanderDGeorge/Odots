@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 import { FiChevronRight, FiCircle } from 'react-icons/fi';
-import './nav.css'
 import { useQuery } from 'react-apollo';
 import { FETCH_USER } from '../../graphql/queries';
 import Logout from '../session/logout';
+import './nav.css'
 
 export default function Nav() {
 
@@ -13,8 +13,8 @@ export default function Nav() {
     const { loading, data } = useQuery(FETCH_USER);
 
     if (loading) return null;
-    else return (
-        <div className="nav">
+    else {
+        return <div className="nav">
             <Link className={active === 1 ? "active nav-link" : "nav-link"} onClick={() => setActive(1)} to="/today">Today</Link>
             <Link className={active === 2 ? "active nav-link" : "nav-link"} onClick={() => setActive(2)} to="/week">This Week</Link>
             <div className="nav-link" onClick={() => { setOpen(!open); setActive(0) }}>
@@ -22,14 +22,14 @@ export default function Nav() {
                 Odots
             </div>
             {open ? <div className="nav-odots">
-                {data.user.odots.map((odot, i) => { console.log(odot); return (
-                    <div className={active === i + 3 ? "active nav-link" : "nav-link"} onClick={() => setActive(i + 3)} key={i}>
+                {data.user.odots.map((odot, i) => (
+                    <Link className={active === i + 3 ? "active nav-link" : "nav-link"} onClick={() => setActive(i + 3)} to="/odots" key={i}>
                         <FiCircle color={odot.color}/>
                         {odot.title}
-                    </div>
-                )})}
+                    </Link>
+                ))}
             </div> : null }
             <Logout className="nav-link"/>
         </div>
-    )
+    }
 }

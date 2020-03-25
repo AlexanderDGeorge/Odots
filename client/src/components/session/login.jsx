@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useHistory, Link } from 'react-router-dom';
 import { useMutation, useApolloClient } from 'react-apollo';
 import { LOGIN_USER } from '../../graphql/mutations';

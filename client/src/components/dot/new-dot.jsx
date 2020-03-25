@@ -32,7 +32,7 @@ function NewDot(props) {
             type="text"
             value={title}
             onChange={e => setTitle(e.target.value)}
-            placeholder="title"
+            placeholder="task"
             required
             autoFocus
           />

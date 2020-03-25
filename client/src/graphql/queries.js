@@ -15,6 +15,7 @@ export const FETCH_USER = gql`
         id
         title
         color
+        date
       }
     }
   }
@@ -26,6 +27,7 @@ export const FETCH_ODOT = gql`
       id
       title
       color
+      date
       dots {
         id
         title
