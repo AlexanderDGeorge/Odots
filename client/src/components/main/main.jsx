@@ -5,8 +5,10 @@ import { IS_LOGGED_IN } from '../../graphql/queries';
 import Landing from '../landing/landing';
 import Odots from '../odot/odots';
 import Nav from '../nav/nav';
-import Today from '../today/today';
-import Week from '../week/week';
+import Today from '../upcoming/today';
+import Week from '../upcoming/week';
+import Month from '../upcoming/month';
+import Missed from '../upcoming/missed';
 import './main.css'
 
 function Main() {
@@ -21,6 +23,8 @@ function Main() {
                 <Switch>
                     <Route path="/today" component={Today} />
                     <Route path="/week" component={Week} />
+                    <Route path="/month" component={Month} />
+                    <Route path="/missed" component={Missed} />
                     <Route path="/" component={Odots} />
                 </Switch>
             </div>

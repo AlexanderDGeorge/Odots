@@ -37,7 +37,6 @@ function Odot(props) {
     return null;
   } else {
     const odot = data.odot;
-    console.log(odot)
     return (
       <div className="odot">
         <div 
