@@ -19,7 +19,6 @@ export default function Missed() {
 
     function filter() {
         const today = getToday();
-        console.log(today.toString())
         return data.user.odots.filter(odot => 
             odot.date < today)
     }

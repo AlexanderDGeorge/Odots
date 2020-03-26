@@ -25,6 +25,7 @@ function Main() {
                     <Route path="/week" component={Week} />
                     <Route path="/month" component={Month} />
                     <Route path="/missed" component={Missed} />
+                    <Route path="/odots" component={Odots} />
                     <Route path="/" component={Odots} />
                 </Switch>
             </div>
