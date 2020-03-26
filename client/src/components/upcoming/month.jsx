@@ -2,6 +2,7 @@ import React from 'react';
 import { useQuery } from 'react-apollo';
 import { FETCH_USER } from '../../graphql/queries';
 import Odot from '../odot/odot';
+import NewOdot from '../odot/new-odot';
 
 export default function Month() {
 
@@ -36,13 +37,13 @@ export default function Month() {
 
     if (loading) { return null }
     else {
-        if (filter().length) {
         return (
             <div className="odots">
                 {filter().map(odot => (
                     <Odot odot={odot} key={odot.id} />
                 ))}
+                <NewOdot />
             </div>
-        )} else return null;
+        )
     }
 }
