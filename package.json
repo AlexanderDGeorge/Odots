@@ -14,8 +14,6 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.8.11",
     "nodemon": "^2.0.2",
-    "react-icons": "^3.9.0",
-    "react-with-gesture": "^4.0.8",
     "validator": "^12.2.0"
   },
   "devDependencies": {},
@@ -31,6 +29,6 @@
   "author": "",
   "license": "ISC",
   "engines": {
-      "node": "10.13"
+    "node": "10.13"
   }
 }
