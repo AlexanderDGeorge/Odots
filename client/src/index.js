@@ -10,26 +10,51 @@ import * as serviceWorker from "./serviceWorker";
 
 import App from "./components/App";
 
-const cache = new InMemoryCache({
-  dataIdFromObject: object => object._id || null
-});
+let uri;
+if (process.env.NODE_ENV === "production") {
+  uri = `/graphql`;
+} else {
+  uri = "http://localhost:5000/graphql";
+}
 
 const httpLink = createHttpLink({
-  uri: "http://localhost:5000/graphql",
+  uri,
   headers: {
-    authorization: localStorage.getItem("auth-token")
+    // heroku can get a little buggy with headers and
+    // localStorage so we'll just ensure a value is always in the header
+    authorization: localStorage.getItem("auth-token") || ""
   }
 });
 
 const client = new ApolloClient({
-  link: httpLink,
+  link: ApolloLink.from([errorLink, httpLink]),
   cache,
-  resolvers: {},
   onError: ({ networkError, graphQLErrors }) => {
     console.log("graphQLErrors", graphQLErrors);
     console.log("networkError", networkError);
   }
 });
+
+const cache = new InMemoryCache({
+  dataIdFromObject: object => object._id || null
+});
+
+// const httpLink = createHttpLink({
+//   uri: "http://localhost:5000/graphql",
+//   headers: {
+//     authorization: localStorage.getItem("auth-token")
+//   }
+// });
+
+// const client = new ApolloClient({
+//   link: httpLink,
+//   cache,
+//   resolvers: {},
+//   onError: ({ networkError, graphQLErrors }) => {
+//     console.log("graphQLErrors", graphQLErrors);
+//     console.log("networkError", networkError);
+//   }
+// });
 
 const token = localStorage.getItem("auth-token");
 
