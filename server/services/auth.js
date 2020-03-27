@@ -1,7 +1,7 @@
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const User = require("../models/User");
-const keys = require("../../config/keys");
+const keys = require("../../config/keys").secretOrKey;
 const validateRegisterInput = require("../validations/register");
 const validateLoginInput = require("../validations/login");
 
@@ -41,7 +41,7 @@ const register = async data => {
       {
         id: user._id
       },
-      keys.secretOrKey
+      keys
     );
 
     return {
@@ -89,7 +89,7 @@ const login = async data => {
           {
             id: user._id
           },
-          keys.secretOrKey
+          keys
         );
         return {
           token,
@@ -110,7 +110,7 @@ const login = async data => {
 const verifyUser = async data => {
   try {
     const { token } = data;
-    const decoded = jwt.verify(token, keys.secretOrKey);
+    const decoded = jwt.verify(token, keys);
     const { id } = decoded;
     const loggedIn = await User.findById(id).then(user => {
       return user ? true : false;
