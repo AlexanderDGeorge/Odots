@@ -19,7 +19,7 @@ if (process.env.NODE_ENV === "production") {
 const httpLink = createHttpLink({
   uri,
   headers: {
-    authorization: localStorage.getItem("auth-token")
+    authorization: localStorage.getItem("auth-token") || ""
   }
 });
 
