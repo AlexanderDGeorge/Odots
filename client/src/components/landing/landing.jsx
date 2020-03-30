@@ -40,7 +40,7 @@ export default function Landing() {
             <footer className="landing-footer">
                     <p>Hi! I'm looking for a job. Check me out!</p>
                     <div className="links">
-                        <a href="https://github.com/AlexanderDGeorge/Spotlofi">
+                        <a href="https://github.com/AlexanderDGeorge/Odots">
                             <FaGithub />
                         </a>
                         <a href="https://www.linkedin.com/in/alexander-george-410466151/">
