@@ -25,13 +25,14 @@ export default function NavLinks(props) {
             <Link className={active === 3 ? "active nav-link" : "nav-link"} onClick={() => handleClick(3)} to="/month">This Month</Link>
             <Link className={active === 4 ? "active nav-link" : "nav-link"} onClick={() => handleClick(4)} to="/missed">Missed</Link>
             <Link className={active === 5 ? "active nav-link" : "nav-link"} onClick={() => handleClick(5)} to="/odots">All</Link>
+            <div className={active === 6 ? "active nav-link" : "nav-link"} onClick={() => handleClick(6)}>Notifications</div>
             <div className="nav-link" onClick={() => { setOpen(!open); setActive(0) }}>
                 <FiChevronRight className={open ? "nav-open" : "nav-close"}/>
                 Odots
             </div>
             {open ? <div className="nav-odots">
                 {data.user.odots.map((odot, i) => (
-                    <Link className={active === i + 6 ? "active nav-link" : "nav-link"} onClick={() => handleClick(i + 6)} to={`/odots/${odot.id}`} key={i}>
+                    <Link className={active === i + 7 ? "active nav-link" : "nav-link"} onClick={() => handleClick(i + 7)} to={`/odots/${odot.id}`} key={i}>
                         <FiCircle color={odot.color}/>
                         {odot.title}
                     </Link>
