@@ -11,7 +11,7 @@
     height: 100vh;
     box-sizing: border-box;
     display: grid;
-    grid-template-rows: 10vh 60vh 30vh;
+    grid-template-rows: 5vh auto 30vh;
     grid-template-columns: 100%;
     grid-template-areas: 
       "nav"
@@ -26,7 +26,7 @@
     height: 100vh;
     box-sizing: border-box;
     display: grid;
-    grid-template-rows: 10vh 60vh 30vh;
+    grid-template-rows: 10vh auto 30vh;
     grid-template-columns: 25% auto;
     grid-template-areas: 
       "nav ."
@@ -58,8 +58,4 @@
 
 .odots {
   grid-area: odots;
-}
-
-.nav {
-    grid-area: nav;
 }

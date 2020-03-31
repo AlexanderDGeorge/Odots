@@ -1,4 +1,41 @@
-.nav {
+@media screen and (max-width: 500px) {
+    .nav {
+        display: flex;
+        align-items: center;
+        padding: 0 20px;
+        background: #555555;
+        width: 100%;
+        height: 100%;
+        box-sizing: border-box;
+    }
+
+    .nav * {
+        z-index: 2;
+    }
+
+    .nav-links {
+        position: absolute;
+        left: 0;
+        top: 0;
+        height: 100%;
+        width: 100%;
+    }
+}
+
+@media screen and (min-width: 500px) {
+    .nav-links {
+        display: flex;
+        flex-direction: column;
+        background: #555555;
+        padding-top: 40px;
+        font-size: 18px;
+        font-weight: 200;
+        min-width: 200px;
+        grid-area: nav;
+    }
+}
+
+.nav-links {
     display: flex;
     flex-direction: column;
     background: #555555;
@@ -6,6 +43,11 @@
     font-size: 18px;
     font-weight: 200;
     min-width: 200px;
+}
+
+.nav svg {
+    color: #cccccc;
+    z-index: 3;
 }
 
 .nav-link {
